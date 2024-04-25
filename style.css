@@ -4,6 +4,8 @@ body {
     font-family: Arial, sans-serif;
     width: 1280px;
     margin: 0 auto;
+    background-color: #fff; /* Default background color */
+    color: #000; /* Default text color */
 }
 
 header, footer {

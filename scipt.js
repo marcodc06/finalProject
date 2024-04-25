@@ -1,61 +1,67 @@
 "use strict";
 
-document.addEventListener("DOMContentLoaded", function() {
-    var form = document.getElementById('contactForm');
-    form.addEventListener('submit', submitForm);
+//dark mode
+document.getElementById('modeToggle').addEventListener('click', function() {
+    document.body.classList.toggle('dark-mode');
+});
+
+modeToggle.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
 });
 
 function submitForm(event) {
     event.preventDefault(); 
     
-    var fullName = document.getElementById('fullName').value;
-    var phone = document.getElementById('phone').value;
-    var email = document.getElementById('email').value;
-    var comments = document.getElementById('comments').value;
+    var fullNameInput = document.getElementById('fullName');
+    var phoneInput = document.getElementById('phone');
+    var emailInput = document.getElementById('email');
+    var commentsInput = document.getElementById('comments');
+    
+    // check for the preferred contact method
     var contactMethod = document.querySelector('input[name="contactMethod"]:checked').value;
     
-    var errors = [];
+    var isValid = true;
 
-    // Regular expressions for validation
-    var nameRegex = /^(?=.+\d)(?=.+[a-zA-Z]).{6,}$/g; // Same regex for username
-    var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,5}$/; // Same regex for email
-    var phoneRegex = /^\d{3}[-\s]?\d{3}[-\s]?\d{4}$/; // Your custom phone regex
-    // We'll define a zip code regex if needed
+    // expressions for validation
+    var nameRegex = /^[a-zA-Z]+( [a-zA-Z]+)*$/;
+    var phoneRegex = /^\d{3}[-\s]?\d{3}[-\s]?\d{4}$/; // Allowing optional hyphens or spaces
+    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    // Validate full name
-    if (!fullName.match(nameRegex)) {
-        errors.push("Please enter a valid full name.");
-    }
-
-    // Validate email
-    if (!email.match(emailRegex)) {
-        errors.push("Please provide a valid email address for contact.");
+    // Validate full name (or first and last name separately)
+    if (!fullNameInput.value.match(nameRegex)) {
+        isValid = false;
     }
 
     // Validate phone number if preferred contact method is phone
-    if (contactMethod === "phone" && !phone.match(phoneRegex)) {
-        errors.push("Please provide a valid phone number for contact.");
+    if (contactMethod === "phone" && !phoneInput.value.match(phoneRegex)) {
+        isValid = false;
+    }
+
+    // Validate email if preferred contact method is email
+    if (contactMethod === "email" && !emailInput.value.match(emailRegex)) {
+        isValid = false;
     }
 
     // Validate comments
-    if (!comments.trim()) {
-        errors.push("Please enter your comments.");
+    if (!commentsInput.value.trim()) {
+        isValid = false;
     }
 
     var errorMessage = document.getElementById('errorMessage');
     var successMessage = document.getElementById('successMessage');
 
-    if (errors.length > 0) {
-        errorMessage.innerHTML = errors.join("<br>");
-        successMessage.innerHTML = "";
-    } else {
+    if (isValid) {
         errorMessage.innerHTML = "";
         successMessage.innerHTML = "Thank you for your submission.<br><br>" +
-                                   "Name: " + fullName + "<br>" +
-                                   "Phone: " + phone + "<br>" +
-                                   "Email: " + email + "<br>" +
-                                   "Comments: " + comments + "<br>" +
+                                   "Name: " + fullNameInput.value + "<br>" +
+                                   "Phone: " + phoneInput.value + "<br>" +
+                                   "Email: " + emailInput.value + "<br>" +
+                                   "Comments: " + commentsInput.value + "<br>" +
                                    "Contact Method: " + contactMethod.charAt(0).toUpperCase() + contactMethod.slice(1);
-        // If you want to submit the form to a server, you can add the submission logic here
+    } else {
+        errorMessage.innerHTML = "Please fill out the form correctly.";
+        successMessage.innerHTML = "";
     }
 }
+
+document.getElementById('contactForm').addEventListener('submit', submitForm);
