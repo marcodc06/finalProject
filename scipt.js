@@ -12,44 +12,29 @@ function submitForm(event) {
     var phone = document.getElementById('phone').value;
     var email = document.getElementById('email').value;
     var comments = document.getElementById('comments').value;
-    var contactMethod = document.querySelector('input[name="contactMethod"]:checked');
-
-    // Check if a contact method is selected
-    if (!contactMethod) {
-        alert("Please select a preferred contact method.");
-        return;
-    }
-    
-    contactMethod = contactMethod.value; // Get the value of the selected contact method
+    var contactMethod = document.querySelector('input[name="contactMethod"]:checked').value;
     
     var errors = [];
 
     // Regular expressions for validation
-    var nameRegex = /^[a-zA-Z\s]+$/;
-    var phoneRegex = /^\d{3}[-\s]?\d{3}[-\s]?\d{4}$/; // Allowing hyphens or spaces
-    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    var nameRegex = /^(?=.+\d)(?=.+[a-zA-Z]).{6,}$/g; // Same regex for username
+    var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,5}$/; // Same regex for email
+    var phoneRegex = /^\d{3}[-\s]?\d{3}[-\s]?\d{4}$/; // Your custom phone regex
+    // We'll define a zip code regex if needed
 
     // Validate full name
     if (!fullName.match(nameRegex)) {
         errors.push("Please enter a valid full name.");
     }
 
-    // Validate email if preferred contact method is email
-    if (contactMethod === "email") {
-        if (!email.match(emailRegex)) {
-            errors.push("Please provide a valid email address for contact.");
-        } else if (!email.trim()) {
-            errors.push("Email address is required for contact.");
-        }
+    // Validate email
+    if (!email.match(emailRegex)) {
+        errors.push("Please provide a valid email address for contact.");
     }
 
     // Validate phone number if preferred contact method is phone
-    if (contactMethod === "phone") {
-        if (!phone.match(phoneRegex)) {
-            errors.push("Please provide a valid phone number for contact.");
-        } else if (!phone.trim()) {
-            errors.push("Phone number is required for contact.");
-        }
+    if (contactMethod === "phone" && !phone.match(phoneRegex)) {
+        errors.push("Please provide a valid phone number for contact.");
     }
 
     // Validate comments
@@ -71,5 +56,6 @@ function submitForm(event) {
                                    "Email: " + email + "<br>" +
                                    "Comments: " + comments + "<br>" +
                                    "Contact Method: " + contactMethod.charAt(0).toUpperCase() + contactMethod.slice(1);
+        // If you want to submit the form to a server, you can add the submission logic here
     }
 }
