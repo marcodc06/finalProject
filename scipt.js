@@ -117,25 +117,39 @@ initProductSwitcher();
 
 //guessing game
 
-document.getElementById('guessForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    
-    //  user's guess
-    var userGuess = parseInt(document.getElementById('guess').value);
+// 
+function initGuessingGame() {
+    var form = document.getElementById('guessingForm');
+    var guessInput = document.getElementById('guessInput');
+    var errorMessage = document.getElementById('errorMessage');
+    var gameResult = document.getElementById('gameResult');
 
-    // Gen a random number between 1 - 10
-    var randomNumber = Math.floor(Math.random() * 10) + 1;
+    form.addEventListener('submit', function(event) {
+        event.preventDefault(); // 
 
-    // show guess and random number
-    document.getElementById('result').innerHTML = `
-        <p>Your guess: ${userGuess}</p>
-        <p>Random number: ${randomNumber}</p>
-    `;
+        var guess = parseInt(guessInput.value); //  input to  integer
 
-    // chekc if the guess matches the random number
-    if (userGuess === randomNumber) {
-        document.getElementById('result').innerHTML += '<p>Congratulations! You guessed correctly!</p>';
-    } else {
-        document.getElementById('result').innerHTML += '<p>Sorry, better luck next time!</p>';
-    }
-});
+        // input value is a number between 1 and 10
+        if (isNaN(guess) || guess < 1 || guess > 10) {
+            errorMessage.textContent = 'Please enter a number between 1 and 10.';
+            gameResult.textContent = ''; // Clear previous game result
+        } else {
+            // random number between 1 and 10
+            var randomNumber = Math.floor(Math.random() * 10) + 1;
+
+            // display guess and the random number
+            gameResult.textContent = 'Your guess: ' + guess + '. Random number: ' + randomNumber + '.';
+
+            // check if guess matches the random number
+            if (guess === randomNumber) {
+                gameResult.textContent += ' Congratulations! You won!';
+            } else {
+                gameResult.textContent += ' Sorry, you lost. Try again!';
+            }
+
+            
+        }
+    });
+}
+
+initGuessingGame();
