@@ -26,13 +26,13 @@ main {
 }
 
 nav ul {
-    list-style-type: none; /* remove bullet points */
+    list-style-type: none;
     padding: 0;
 }
 
 nav ul li {
-    display: inline; /* list items inline */
-    margin-right: 20px; /* for space between list items */
+    display: inline; 
+    margin-right: 20px; 
 }
 
 nav ul li a {
