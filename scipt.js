@@ -66,10 +66,7 @@ function submitForm(event) {
 
 document.getElementById('contactForm').addEventListener('submit', submitForm);
 
-// product switcher
-// product data
-// Function to initialize product switcher
-const products = [
+var products = [
     {
         name: "Hat",
         image: "hat.jpg",
@@ -89,18 +86,18 @@ const products = [
 
 // Function to initialize product switcher
 function initProductSwitcher() {
-    const productButtons = document.querySelectorAll('.product-controls button');
-    const productInfo = document.querySelector('.productInfo');
-    const productName = document.getElementById('productName');
-    const productImage = document.getElementById('productImage');
-    const productDescription = document.getElementById('productDescription');
+    var productButtons = document.querySelectorAll('.product-controls button');
+    var productInfo = document.querySelector('.productInfo');
+    var productName = document.getElementById('productName');
+    var productImage = document.getElementById('productImage');
+    var productDescription = document.getElementById('productDescription');
 
     // Show initial product
     showProduct(products[0]);
 
     // Add event listeners to product buttons
-    productButtons.forEach((button, index) => {
-        button.addEventListener('click', () => {
+    productButtons.forEach(function(button, index) {
+        button.addEventListener('click', function() {
             showProduct(products[index]);
         });
     });
