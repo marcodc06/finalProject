@@ -65,3 +65,53 @@ function submitForm(event) {
 }
 
 document.getElementById('contactForm').addEventListener('submit', submitForm);
+
+// product switcher
+// product data
+// Function to initialize product switcher
+const products = [
+    {
+        name: "Hat",
+        image: "hat.jpg",
+        description: "Branded hat."
+    },
+    {
+        name: "Shirt",
+        image: "shirt.jpg",
+        description: "Branded Shirt."
+    },
+    {
+        name: "Coffee Mug",
+        image: "mug.jpg",
+        description: "coffeeMug."
+    }
+];
+
+// Function to initialize product switcher
+function initProductSwitcher() {
+    const productButtons = document.querySelectorAll('.product-controls button');
+    const productInfo = document.querySelector('.productInfo');
+    const productName = document.getElementById('productName');
+    const productImage = document.getElementById('productImage');
+    const productDescription = document.getElementById('productDescription');
+
+    // Show initial product
+    showProduct(products[0]);
+
+    // Add event listeners to product buttons
+    productButtons.forEach((button, index) => {
+        button.addEventListener('click', () => {
+            showProduct(products[index]);
+        });
+    });
+
+    // Function to show product details
+    function showProduct(product) {
+        productName.textContent = product.name;
+        productImage.src = product.image;
+        productDescription.textContent = product.description;
+    }
+}
+
+// Initialize product switcher
+initProductSwitcher();
