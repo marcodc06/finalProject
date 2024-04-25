@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cossio Landscaping</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+    <script src="obfuscated.js" defer></script>
 </head>
 <body>
     <header>
         <div class="container">
+            <img src="logo.jpg" alt="Cossio Landscaping Logo" class="logo">
             <h1>Cossio Landscaping</h1>
             <nav>
                 <ul>
@@ -19,6 +20,7 @@
                 </ul>
             </nav>
         </div>
+        <!-- dark mode button-->
         <button id="modeToggle">Toggle Dark Mode</button>
     </header>
     <img src="cacti.jpg" alt="Landscape Image">    
@@ -30,20 +32,21 @@
             <p>Jose has years of experience and he can create designs that blend seamlessly with nature. Jose has the wisdom of years in landscaping, while Marco is his assistant and keeps projects on track.</p>
         </div>
     </section>
+    <!-- form to set up appointment-->
     <div class="container">
         <h2>Contact us to set up a free estimate!</h2>
         <form id="contactForm">
             <label for="fullName">Full Name:</label>
-            <input type="text" id="fullName" name="fullName" required><br><br>
+            <input type="text" id="fullName" name="fullName"><br><br>
             
             <label for="phone">Phone Number:</label>
             <input type="tel" id="phone" name="phone"><br><br>
             
-            <label for="email">Email Address:</label>
+            <label for="email">Email:</label>
             <input type="email" id="email" name="email"><br><br>
             
             <label for="comments">Comments:</label>
-            <textarea id="comments" name="comments" required></textarea><br><br>
+            <textarea id="comments" name="comments"></textarea><br><br>
             
             <label>Preferred Contact Method:</label><br>
             <input type="radio" id="contactPhone" name="contactMethod" value="phone" checked>
@@ -57,6 +60,7 @@
         <div id="successMessage" class="success"></div>
     </div>
     
+    <!-- products-->
     <section class="product-switcher">
         <div class="container">
             <h2>Our Products</h2>
@@ -65,9 +69,10 @@
                 <button id="product2Btn">Shirt</button>
                 <button id="product3Btn">Mug</button>
             </div>
+            <!--start with shirt buttons will change products -->
             <div class="productInfo" id="productInfo">
-                <h3 id="productName"></h3>
-                <img src="shirt.jpg" alt="" id="productImage">
+                <h3 id="productName">Browse our merch!</h3>
+                <img src="shirt.jpg" alt="shirt" id="productImage">
                 <p id="productDescription"></p>
             </div>
         </div>

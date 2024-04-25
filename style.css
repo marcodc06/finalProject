@@ -4,8 +4,14 @@ body {
     font-family: Arial, sans-serif;
     width: 1280px;
     margin: 0 auto;
-    background-color: #fff; /* Default background color */
-    color: #000; /* Default text color */
+    background-color: #fff; 
+    color: #000;
+}
+
+.logo {
+    width: 150px; 
+    height: auto; 
+    margin-right: 20px; /
 }
 
 header, footer {
@@ -26,7 +32,7 @@ nav ul {
 
 nav ul li {
     display: inline; /* list items inline */
-    margin-right: 20px; /* Add spacing between list items */
+    margin-right: 20px; /* for space between list items */
 }
 
 nav ul li a {
@@ -44,10 +50,7 @@ label {
     margin-bottom: 5px;
 }
 
-input[type="text"],
-input[type="tel"],
-input[type="email"],
-textarea {
+input[type="text"], input[type="tel"], input[type="email"], textarea {
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;

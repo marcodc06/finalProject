@@ -20,29 +20,30 @@ function submitForm(event) {
     // check for the preferred contact method
     var contactMethod = document.querySelector('input[name="contactMethod"]:checked').value;
     
+    //track whether or not the form is valid
     var isValid = true;
 
     // expressions for validation
     var nameRegex = /^[a-zA-Z]+( [a-zA-Z]+)*$/;
-    var phoneRegex = /^\d{3}[-\s]?\d{3}[-\s]?\d{4}$/; // Allowing optional hyphens or spaces
+    var phoneRegex = /^\d{3}[-\s]?\d{3}[-\s]?\d{4}$/; // hyphens o spaces
     var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    // Validate full name (or first and last name separately)
+    // check full name 
     if (!fullNameInput.value.match(nameRegex)) {
         isValid = false;
     }
 
-    // Validate phone number if preferred contact method is phone
+    // check phone number if preferred contact method is phone
     if (contactMethod === "phone" && !phoneInput.value.match(phoneRegex)) {
         isValid = false;
     }
 
-    // Validate email if preferred contact method is email
+    // chech their email if preferred contact method is email
     if (contactMethod === "email" && !emailInput.value.match(emailRegex)) {
         isValid = false;
     }
 
-    // Validate comments
+    // check for comments
     if (!commentsInput.value.trim()) {
         isValid = false;
     }
@@ -52,12 +53,13 @@ function submitForm(event) {
 
     if (isValid) {
         errorMessage.innerHTML = "";
-        successMessage.innerHTML = "Thank you for your submission.<br><br>" +
-                                   "Name: " + fullNameInput.value + "<br>" +
-                                   "Phone: " + phoneInput.value + "<br>" +
-                                   "Email: " + emailInput.value + "<br>" +
-                                   "Comments: " + commentsInput.value + "<br>" +
-                                   "Contact Method: " + contactMethod.charAt(0).toUpperCase() + contactMethod.slice(1);
+        successMessage.innerHTML = 
+        "Thank you for your submission.<br><br>" +
+        "Name: " + fullNameInput.value + "<br>" +
+        "Phone: " + phoneInput.value + "<br>" +
+        "Email: " + emailInput.value + "<br>" +
+        "Comments: " + commentsInput.value + "<br>" +
+        "Contact Method: " + contactMethod.charAt(0).toUpperCase() + contactMethod.slice(1);
     } else {
         errorMessage.innerHTML = "Please fill out the form correctly.";
         successMessage.innerHTML = "";
@@ -84,7 +86,7 @@ var products = [
     }
 ];
 
-// Function to initialize product switcher
+// onitialize product switcher
 function initProductSwitcher() {
     var productButtons = document.querySelectorAll('.product-controls button');
     var productInfo = document.querySelector('.productInfo');
@@ -92,17 +94,17 @@ function initProductSwitcher() {
     var productImage = document.getElementById('productImage');
     var productDescription = document.getElementById('productDescription');
 
-    // Show initial product
+    // first  product should be shirt
     showProduct(products[0]);
 
-    // Add event listeners to product buttons
+    // listeners to product buttons
     productButtons.forEach(function(button, index) {
         button.addEventListener('click', function() {
             showProduct(products[index]);
         });
     });
 
-    // Function to show product details
+    //show product details
     function showProduct(product) {
         productName.textContent = product.name;
         productImage.src = product.image;
@@ -110,5 +112,5 @@ function initProductSwitcher() {
     }
 }
 
-// Initialize product switcher
+// initialize product switcher
 initProductSwitcher();
