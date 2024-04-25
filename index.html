@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cossio Landscaping</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Cossio Landscaping</h1>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Reviews</a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <img src="cacti.jpg" alt="Landscape Image">    
+    <section class="general-info">
+        <div class="container">
+            <h2>General Information</h2>
+            <p>Welcome to Cossio Landscaping! We make beautiful outdoor spaces. Whether you want a peaceful garden, a cool backyard hangout, nicer-looking yard, or just regular maintenance, we've got you covered. Our team knows how to make landscapes look amazing. Check out our work and let's talk about your dream outdoor space!</p>
+            <p>Cossio Landscaping, a family business nestled in Arizona, brings a personal touch to every outdoor project. Founded by father-son team Jose and Marco Cossio, we're all about crafting beautiful landscapes that fit your home.</p>
+            <p>Jose has years of experience and a love for our state's scenery, He creates designs that blend seamlessly with nature. Jose has the wisdom of years in landscaping, while Marco is his assistant and keeps projects on track.</p>
+        </div>
+    </section>
+    <div class="container">
+        <h2>Contact us to set up a free estimate!</h2>
+        <form id="contactForm" onsubmit="submitForm(event)">
+            <label for="fullName">Full Name:</label>
+            <input type="text" id="fullName" name="fullName" required><br><br>
+            
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone"><br><br>
+            
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email"><br><br>
+            
+            <label for="comments">Comments:</label>
+            <textarea id="comments" name="comments" required></textarea><br><br>
+            
+            <label>Preferred Contact Method:</label><br>
+            <input type="radio" id="contactPhone" name="contactMethod" value="phone" checked>
+            <label for="contactPhone">Phone</label><br>
+            <input type="radio" id="contactEmail" name="contactMethod" value="email">
+            <label for="contactEmail">Email</label><br><br>
+            
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    
+    
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Marco Cossio </p>
+            
+        </div>
+    </footer>
+</body>
+</html>
