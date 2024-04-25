@@ -114,3 +114,28 @@ function initProductSwitcher() {
 
 // initialize product switcher
 initProductSwitcher();
+
+//guessing game
+
+document.getElementById('guessForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    //  user's guess
+    var userGuess = parseInt(document.getElementById('guess').value);
+
+    // Gen a random number between 1 - 10
+    var randomNumber = Math.floor(Math.random() * 10) + 1;
+
+    // show guess and random number
+    document.getElementById('result').innerHTML = `
+        <p>Your guess: ${userGuess}</p>
+        <p>Random number: ${randomNumber}</p>
+    `;
+
+    // chekc if the guess matches the random number
+    if (userGuess === randomNumber) {
+        document.getElementById('result').innerHTML += '<p>Congratulations! You guessed correctly!</p>';
+    } else {
+        document.getElementById('result').innerHTML += '<p>Sorry, better luck next time!</p>';
+    }
+});
